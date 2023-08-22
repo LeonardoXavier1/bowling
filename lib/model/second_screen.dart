@@ -13,8 +13,8 @@ class SecondScreen extends StatelessWidget {
 
   //=================================================================================================================================================
   //==========================================================      /VOIDS           ================================================================
-  //=================================================================================================================================================
 
+  //=================================================================================================================================================
 
 
 
@@ -61,9 +61,7 @@ class SecondScreen extends StatelessWidget {
                 return Padding(
                   padding: const EdgeInsets.all(4.0),
                   child: ElevatedButton(
-                    onPressed: () {
-
-                  },
+                    onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
                       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
@@ -77,9 +75,31 @@ class SecondScreen extends StatelessWidget {
               }),
             ),
           ),
-
-
-
+          const SizedBox(height: 70),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              for (int row = 0; row < 3; row++)
+                Column(
+                  children: List.generate(3, (index) {
+                    final number = row * 3 + index + 1;
+                    return Container(
+                      width: 90,
+                      height: 90,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        border: Border.all(color: Colors.black, width: 2),
+                      ),
+                      child: Text(
+                        '$number',
+                        style: const TextStyle(color: Colors.black),
+                      ),
+                    );
+                  }),
+                ),
+            ],
+          ),
         ],
       ),
     );

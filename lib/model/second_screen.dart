@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
+import 'line_painter.dart';
+
 class SecondScreen extends StatelessWidget {
   const SecondScreen({Key? key}) : super(key: key);
 
@@ -8,24 +10,18 @@ class SecondScreen extends StatelessWidget {
   //==========================================================      VOIDS            ================================================================
   //=================================================================================================================================================
 
-
-
-
   //=================================================================================================================================================
   //==========================================================      /VOIDS           ================================================================
 
   //=================================================================================================================================================
 
-
-
-
-
-
-
-
   //=================================================================================================================================================
   //==========================================================      /BUILDS          ================================================================
   //=================================================================================================================================================
+
+
+
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +60,8 @@ class SecondScreen extends StatelessWidget {
                     onPressed: () {},
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 15),
                     ),
                     child: Text(
                       '$index',
@@ -91,19 +88,57 @@ class SecondScreen extends StatelessWidget {
                         color: Colors.white,
                         border: Border.all(color: Colors.black, width: 2),
                       ),
-                      child: Text(
-                        '$number',
-                        style: const TextStyle(color: Colors.black),
+                      child: CustomPaint(
+                        painter: LinePainter(),
+                        child: Align(
+                          alignment: Alignment.topCenter,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 100),
+                            child: Text(
+                              '$number',
+                              style: const TextStyle(color: Colors.green),
+                            ),
+                          ),
+                        ),
                       ),
                     );
                   }),
                 ),
             ],
           ),
+          const SizedBox(height: 40),
+          Column(
+            children: [
+              Container(
+                width: 90,
+                height: 90,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(color: Colors.black, width: 2),
+                ),
+                child: CustomPaint(
+                  painter: LinePainter(),
+                  child: const Align(
+                    alignment: Alignment.topCenter,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 100),
+                      child: Text(
+                        '10',
+                        style: TextStyle(color: Colors.green),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
+
 
   //=================================================================================================================================================
   //==========================================================      /BUILDS          ================================================================

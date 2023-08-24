@@ -31,7 +31,6 @@ void fillSquare(int number) {
         sums[currentRow][currentCol] = numbers1[currentRow][currentCol]! + numbers2[currentRow][currentCol]!;
       });
 
-      // Move to the next cell
       if (currentCol < 2) {
         currentCol++;
       } else {
@@ -39,7 +38,6 @@ void fillSquare(int number) {
         if (currentRow < 2) {
           currentRow++;
         } else {
-          // Check if the last square is filled
           if (currentRow == 2 && currentCol == 2 && numbers1[2][2] != null && numbers2[2][2] != null) {
             setState(() {
               currentRow = 0;
@@ -117,14 +115,14 @@ void fillSquare(int number) {
               }),
             ),
           ),
-          const SizedBox(height: 20), // Espaço entre os botões e os quadrados
-          for (int i = 0; i < 3; i++) // Criar 3 linhas de quadrados
+          const SizedBox(height: 20),
+          for (int i = 0; i < 3; i++)
             Padding(
               padding: const EdgeInsets.only(bottom: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  for (int j = 0; j < 3; j++) // Criar 3 quadrados por linha
+                  for (int j = 0; j < 3; j++)
                     Container(
                       width: 100,
                       height: 100,

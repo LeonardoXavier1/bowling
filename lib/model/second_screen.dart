@@ -14,6 +14,8 @@ class _SecondScreenState extends State<SecondScreen> {
 
   int currentRow = 0;
   int currentCol = 0;
+  int totalPins = 10; 
+
 
 
 
@@ -58,117 +60,120 @@ void fillSquare(int number) {
   //=================================================================================================================================================
 
 
- @override
-  Widget build(BuildContext context) {
-    return Scaffold(
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    backgroundColor: const Color.fromARGB(255, 59, 3, 77),
+    appBar: AppBar(
       backgroundColor: const Color.fromARGB(255, 59, 3, 77),
-      appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 59, 3, 77),
-        title: const Text('Bowling System'),
-      ),
-      body: Column(
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(vertical: 20),
-            child: Text(
-              'Knocked down pins',
-              style: TextStyle(color: Colors.white, fontSize: 24),
+      title: const Text('Bowling System'),
+    ),
+    body: Column(
+      children: [   
+        const Padding(
+          padding: EdgeInsets.symmetric(vertical: 20),
+          child: Text(
+            'Knocked down pins',
+            style: TextStyle(color: Colors.white, fontSize: 24),
+          ),
+        ),
+        Align(
+          alignment: Alignment.centerRight,
+          child: SizedBox(
+            width: 35,
+            height: 24,
+            child: Lottie.network(
+              'https://lottie.host/36b8b557-d5ce-4cba-a15d-196b0f389984/jsZdqdbDvX.json',
+              fit: BoxFit.cover,
             ),
           ),
-          Align(
-            alignment: Alignment.centerRight,
-            child: SizedBox(
-              width: 35,
-              height: 24,
-              child: Lottie.network(
-                'https://lottie.host/36b8b557-d5ce-4cba-a15d-196b0f389984/jsZdqdbDvX.json',
-                fit: BoxFit.cover,
-              ),
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              children: List.generate(11, (index) {
-                return Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      fillSquare(index);
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 15,
-                      ),
-                    ),
-                    child: Text(
-                      '$index',
-                      style: const TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                      ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: List.generate(11, (index) {
+              return Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    fillSquare(index);
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 20,
+                      vertical: 15,
                     ),
                   ),
-                );
-              }),
-            ),
+                  child: Text(
+                    '$index',
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+              );
+            }),
           ),
-          const SizedBox(height: 20),
-          for (int i = 0; i < 3; i++)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  for (int j = 0; j < 3; j++)
-                    Container(
-                      width: 100,
-                      height: 100,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(left: 8.0, top: 8.0),
-                            child: Text(
-                              numbers1[i][j] != null ? '${numbers1[i][j]}' : '',
-                              style: const TextStyle(color: Colors.white),
+        ),
+        const SizedBox(height: 20),
+        for (int i = 0; i < 3; i++)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                for (int j = 0; j < 3; j++)
+                  Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Row( // New Row for Items 1 and 2
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0, top: 8.0),
+                              child: Text(
+                                numbers1[i][j] != null ? '${numbers1[i][j]}' : '',
+                                style: const TextStyle(color: Colors.white),
+                              ),
                             ),
-                          ),
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Padding(
-                              padding: const EdgeInsets.only(top: 0, right: 8.0),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 8.0, top: 8.0),
                               child: Text(
                                 numbers2[i][j] != null ? '${numbers2[i][j]}' : '',
                                 style: const TextStyle(color: Colors.white),
                               ),
                             ),
+                          ],
+                        ),
+                        const Spacer(),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Score: ${sums[i][j]}',
+                            style: const TextStyle(color: Colors.white),
                           ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Text(
-                              'Score: ${sums[i][j]}',
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                ],
-              ),
+                  ),
+              ],
             ),
-        ],
-      ),
-    );
-  }
+          ),
+      ],
+    ),
+  );
+}
+  
 
 
 
